@@ -1,3 +1,6 @@
+# PML<sub>QC</sub> scripts
+To be added soon
+
 # PML<sub>QC</sub> datasets
 ## CCSD(T) dataset (4503 molecules, QM9 indices 1 to 6000, with omissions)
 * **training set** (3611 molecules)
