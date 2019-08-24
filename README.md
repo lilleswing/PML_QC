@@ -14,13 +14,55 @@ for iepoch in `seq 1 10`; do
   nMLQM=$(expr $iepoch + 0)
   if [ ! -s checkpoint1/PML_QC-${nMLQM}.meta ]; then
     output_file="run.1.Epoch${nMLQM}.out"
+    echo "Starting epoch $iepoch" > $output_file
     python3 pml_qc.py --mode train --dataset "../../QM9_Stanford_data/minibatches_split_based_on_3rd_digit_batchsize16" --checkpoint_dir checkpoint1 --epochs 1 --weight_E 0 --weight_wE 0 >> $output_file
   fi
 done
+
+wwE_increase_per_epoch=10
+cp -r checkpoint1 checkpoint23
+nPMLQC_final=$(expr 12 + 24)
+while [ ! -s checkpoint23/PML_QC-${nPMLQC_final}.meta ]; do
+  iepoch=1
+  nPMLQC=$(expr $iepoch + 12)
+  while [ -s checkpoint23/PML_QC-${nPMLQC}.meta ]; do
+    iepoch=$(expr $iepoch + 1)
+    nPMLQC=$(expr $iepoch + 12)
+  done
+  output_file="run.23.Epoch${nPMLQC}.out"
+  wwE=$(echo "scale=2; $iepoch * $wwE_increase_per_epoch" | bc)
+  if [ $iepoch -le 12 ]; then
+      lr=0.0002
+  else
+      lr=0.00002
+  fi
+  echo "Starting epoch $iepoch" > $output_file
+  python3 pml_qc.py --mode train --checkpoint_dir checkpoint23 --epochs 1 --weight_E 1e4 --weight_wE $wwE --learning_rate $lr >> $output_file
+done
+
+cp -r checkpoint23 checkpoint4
+iepoch=25
+nPMLQC=$(expr $iepoch + 12)
+if [ ! -s checkpoint4/PML_QC-${nPMLQC}.meta ]; then
+  output_file="run.4.Epoch${nPMLQC}.out"
+  wwE=$(echo "scale=2; $iepoch * $wwE_increase_per_epoch" | bc)
+  lr=0.000002
+  echo "Starting epoch $iepoch" > $output_file
+  python3 pml_qc.py --mode train --checkpoint_dir checkpoint4v6_3rd_digit_9ha.d${wwE_increase_per_epoch} --epochs 1 --weight_E 1e4 --weight_wE $wwE --learning_rate $lr >> $output_file
+fi
 ```
 (Different output files were recorded because training was run on pre-emptible nodes, and otherwise they would erase previous output files in the case of restart.)
 
-Checkpoint files:
+The PML-QC<sub>CCSD</sub> model was trained with the following commands in slurm scripts:
+```
+module load py-tensorflow/1.9.0_py36
+cp -r checkpoint4 checkpoint_transfer_learning
+python3 pml_qc.py --mode transfer_learning --epochs 100 --checkpoint_dir checkpoint_transfer_learning --miniepochs_for_rho_per_epoch 100 --learning_rate 0.0002
+python3 pml_qc.py --mode transfer_learning --epochs 100 --checkpoint_dir checkpoint_transfer_learning --miniepochs_for_rho_per_epoch 100 --learning_rate 0.0001
+python3 pml_qc.py --mode transfer_learning --epochs 100 --checkpoint_dir checkpoint_transfer_learning --miniepochs_for_rho_per_epoch 100 --learning_rate 0.00002
+```
+
+The resulting checkpoint files mentioned in the paper:
   * for PML-QC<sub>DFT</sub> ([tar.gz](checkpoint_files/checkpoint_PML_QC_DFT.tar.gz))
   * for PML-QC<sub>CCSD</sub> ([tar.gz](checkpoint_files/checkpoint_PML_QC_CCSD.tar.gz))
 
