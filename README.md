@@ -1,5 +1,5 @@
 # PML<sub>QC</sub> scripts
-The python script for training and predictions (using tensorflow) is in scripts/pml_qc.py
+The python script for training and predictions (using tensorflow) is in [scripts/pml_qc.py](scripts/pml_qc.py)
 
 First, npy files with minibatches were prepared by running a slurm script with the following commands:
 ```
