@@ -1,6 +1,10 @@
 # PML<sub>QC</sub> scripts
 To be added soon
 
+Checkpoint files:
+  * for PML-QC<sub>DFT</sub> ([tar.gz](checkpoint_files/checkpoint_PML_QC_DFT.tar.gz))
+  * for PML-QC<sub>CCSD</sub> ([tar.gz](checkpoint_files/checkpoint_PML_QC_CCSD.tar.gz))
+
 # PML<sub>QC</sub> datasets
 ## CCSD(T) dataset (4503 molecules, QM9 indices 1 to 6000, with omissions)
 * **training set** (3611 molecules)
