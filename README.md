@@ -1,5 +1,24 @@
 # PML<sub>QC</sub> scripts
-To be added soon
+The python script for training and predictions (using tensorflow) is in scripts/pml_qc.py
+
+First, npy files with minibatches were prepared by running a slurm script with the following commands:
+```
+module load py-tensorflow/1.9.0_py36
+python3 pml_qc.py --mode generate_minibatches
+```
+
+The PML-QC<sub>DFT</sub> model was trained with the following commands in slurm scripts:
+```
+module load py-tensorflow/1.9.0_py36
+for iepoch in `seq 1 10`; do
+  nMLQM=$(expr $iepoch + 0)
+  if [ ! -s checkpoint1/PML_QC-${nMLQM}.meta ]; then
+    output_file="run.1.Epoch${nMLQM}.out"
+    python3 pml_qc.py --mode train --dataset "../../QM9_Stanford_data/minibatches_split_based_on_3rd_digit_batchsize16" --checkpoint_dir checkpoint1 --epochs 1 --weight_E 0 --weight_wE 0 >> $output_file
+  fi
+done
+```
+(Different output files were recorded because training was run on pre-emptible nodes, and otherwise they would erase previous output files in the case of restart.)
 
 Checkpoint files:
   * for PML-QC<sub>DFT</sub> ([tar.gz](checkpoint_files/checkpoint_PML_QC_DFT.tar.gz))
