@@ -98,4 +98,8 @@ This dataset was divided into (see section S4.3 in the Supplementary Information
 The results of PBE0/pcS-3 and HF/cc-pVDZ quantum chemical computations for these molecules (fchk files) and the corresponding minibatches for training, validation and testing (npy files) are too large to be placed on github; they will be added to [Stanford Digital Repository](https://searchworks.stanford.edu/view/kf921gd3855).
 
 # DFT errors
-asdf
+The results of quantum chemical computations (fchk and log files) for the first six molecules in the QM9 dataset, which were used to estimate errors of DFT and other methods in Section S2.1: [tar.gz](high_theory_level_large_basis_set_results/CCSD_with_large_basis_set_results.tar.gz).
+
+Full versions of Tables S3 and S4 (errors of various DFT methods with various basis sets relative to "CCSD(T)/aug-cc-pVQZ" energies and RI-CCSD/aug-cc-pVQZ electron densities) are given here:
+* errors in energies: computed in [Q-Chem](DFT_errors/DFT_energy_errors.1to6000.qchem.out) and in [Gaussian](DFT_errors/DFT_energy_errors.1to6000.gaussian.out);
+* errors in electron densities: computed in [Q-Chem](DFT_errors/DFT_rho_L1_errors.1to6000.qchem.out) and in [Gaussian](DFT_errors/DFT_rho_L1_errors.1to6000.gaussian.out).
