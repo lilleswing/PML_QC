@@ -96,3 +96,6 @@ This dataset was divided into (see section S4.3 in the Supplementary Information
 * **test set 2** (21963 molecules)
 
 The results of PBE0/pcS-3 and HF/cc-pVDZ quantum chemical computations for these molecules (fchk files) and the corresponding minibatches for training, validation and testing (npy files) are too large to be placed on github; they will be added to [Stanford Digital Repository](https://searchworks.stanford.edu/view/kf921gd3855).
+
+# DFT errors
+asdf
