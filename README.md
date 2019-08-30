@@ -87,5 +87,12 @@ In the files with energies, "dE_*QC_method*" stands for (*E* - &Sigma;<sub>*a*</
 
 Electron densities for 52 molecules (indices 1 to 100, with omissions) computed with RI-CCSD/aug-cc-pVQZ, in the format of 64\*64\*64 cube files, are given here: [tar.gz](ccsdt_dataset/RI-CCSD_aug-cc-pVQZ_centered.64x64x64.tar.gz). Other files with the electron densities are too large to be placed on github; they will be added to [Stanford Digital Repository](https://searchworks.stanford.edu/view/kf921gd3855).
 
-## PBE0/pcS-3 dataset (133780 molecules from the QM9 dataset)
-asdf
+## PBE0/pcS-3 dataset (133780 molecules from the QM9 dataset, indices 1 to 133885, with omissions)
+This dataset was divided into (see section S4.3 in the Supplementary Information of the manuscript for details):
+
+* **training set** (89432 molecules)
+* **validation set** (11191 molecules)
+* **test set 1** (11194 molecules)
+* **test set 2** (21963 molecules)
+
+The results of PBE0/pcS-3 and HF/cc-pVDZ quantum chemical computations for these molecules (fchk files) and the corresponding minibatches for training, validation and testing (npy files) are too large to be placed on github; they will be added to [Stanford Digital Repository](https://searchworks.stanford.edu/view/kf921gd3855).
