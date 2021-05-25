@@ -10,6 +10,7 @@ tar xzf checkpoint_PML_QC_CCSD.tar.gz
 cd ..
 
 # Grab condition files from https://searchworks.stanford.edu/view/kf921gd3855
+# https://stacks.stanford.edu/file/druid:kf921gd3855/minibatches_split_based_on_3rd_digit_9ha_batchsize16_batch95X.tar.gz
 rsync -avz boltio:/nfs/working/deep_learn/key_store/pml_qc/minibatches_split_based_on_3rd_digit_9ha_batchsize16 ccsdt_dataset/
 
 python scripts/pml_qc.py --mode predict \
