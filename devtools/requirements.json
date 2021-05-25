@@ -1,0 +1,22 @@
+{
+  "channels": [
+    "anaconda",
+    "conda-forge"
+  ],
+  "packages": [
+    "setuptools>=39.0.1",
+    "pandas>=0.23.4",
+    "python>=3.6",
+    "jupyter",
+    "pytest>=5.3.2"
+  ],
+  "wheels": [
+  ],
+  "cpu_packages": [
+    "tensorflow==1.9.0"
+  ],
+  "gpu_packages": [
+    "tensorflow-gpu==1.9.0",
+    "cudatoolkit==9.2"
+  ]
+}
